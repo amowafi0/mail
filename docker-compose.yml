@@ -16,7 +16,6 @@ services:
     volumes:
       - ./data:/opt/stalwart-mail/data
       - ./config:/opt/stalwart-mail/etc
-      - /etc/letsencrypt:/etc/letsencrypt:ro
     environment:
       - STALWART_HOSTNAME=mail.amowafy.site
       - STALWART_DOMAIN=amowafy.site
