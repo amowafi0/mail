@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  stalwart:
+    image: stalwartlabs/mail-server:latest
+    container_name: stalwart-mail
+    hostname: mail.amowafy.site  # Replace with your domain
+    restart: unless-stopped
+    ports:
+      - "25:25"     # SMTP
+      - "587:587"   # SMTP submission
+      - "465:465"   # SMTP over SSL
+      - "143:143"   # IMAP
+      - "993:993"   # IMAP over SSL
+      - "4190:4190" # ManageSieve
+      - "8443:8080" # Web admin on port 8443 instead
+    volumes:
+      - ./data:/opt/stalwart-mail/data
+      - ./config:/opt/stalwart-mail/etc
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    environment:
+      - STALWART_HOSTNAME=mail.amowafy.site
+      - STALWART_DOMAIN=amowafy.site
